@@ -209,6 +209,7 @@ class ColdingHandler(tornado.web.RequestHandler):
 
 
 def make_app():
+    # 路由映射
     app = tornado.web.Application([
         (r"/app/install", AppHandler),
         (r"/cold", ColdingHandler),
@@ -269,10 +270,12 @@ async def device_watch(allow_remote: bool = False):
                 "provider": None,  # not present
             })
 
-
+# 定义异步函数
 async def async_main():
+    # 建立解析对象 formatter_class： 重置 help 信息输出的格式
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    # 为应用程序添加参数选项
     parser.add_argument(
         '-s', '--server', default='localhost:4000', help='server address')
     parser.add_argument(
